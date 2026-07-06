@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+  <style>
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 5px;
+      text-align: left;
+      width: 100%;
+    }
+  </style>
+
+  <h2>Register</h2>
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <div>
+      {{ form.username.label }}<br>
+      {{ form.username(class="form-control", placeholder="Username") }}
+      {% for e in form.username.errors %}
+        <div class="error">{{ e }}</div>
+      {% endfor %}
+    </div>
+    <div>
+      {{ form.email.label }}<br>
+      {{ form.email(class="form-control", placeholder="Email") }}
+      {% for e in form.email.errors %}
+        <div class="error">{{ e }}</div>
+      {% endfor %}
+    </div>
+    <div>
+      {{ form.password.label }}<br>
+      {{ form.password(class="form-control", placeholder="Password") }}
+      {% for e in form.password.errors %}
+        <div class="error">{{ e }}</div>
+      {% endfor %}
+    </div>
+    <div>
+      {{ form.confirm_password.label }}<br>
+      {{ form.confirm_password(class="form-control", placeholder="Confirm Password") }}
+      {% for e in form.confirm_password.errors %}
+        <div class="error">{{ e }}</div>
+      {% endfor %}
+    </div>
+    <div>
+      {{ form.submit(class="btn btn-primary") }}
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "base.html" %} {% block title %}New Post - SkyHub{% endblock %} {%
+block content %}
+<div class="row">
+  <div class="col-lg-8 mx-auto">
+    <!-- Back + Title -->
+    <div class="d-flex align-items-center mb-4">
+      <a href="{{ url_for('home') }}" class="btn btn-outline-secondary me-3">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+      <h1><i class="fas fa-plus-circle"></i> Share Your Aviation Story</h1>
+    </div>
+
+    <!-- Form Card -->
+    <div class="card">
+      <div class="card-header">
+        <h4 class="mb-0">Create New Post</h4>
+      </div>
+      <div class="card-body">
+        <form method="POST" action="" enctype="multipart/form-data">
+          {{ form.hidden_tag() }}
+
+          <!-- Title -->
+          <div class="mb-3">
+            {{ form.title.label(class="form-label") }} {{
+            form.title(class="form-control", placeholder="Enter your post title") }}
+            <div class="form-text">
+              Make it catchy and descriptive (5–200 characters)
+            </div>
+            {% for e in form.title.errors %}
+            <div class="text-danger small">{{ e }}</div>
+            {% endfor %}
+          </div>
+
+          <!-- Content -->
+          <div class="mb-4">
+            {{ form.content.label(class="form-label") }} {{
+            form.content(class="form-control", rows=5, placeholder="Write your story...") }}
+            <div class="form-text">
+              Share your experience, ask questions, or discuss aviation topics.
+            </div>
+            {% for e in form.content.errors %}
+            <div class="text-danger small">{{ e }}</div>
+            {% endfor %}
+          </div>
+
+          <!-- Media Upload -->
+          <div class="mb-4">
+            <label class="form-label">Media Attachments</label>
+            <div class="d-flex gap-2">
+              <!-- Photo upload -->
+              <div>
+                {{ form.image(class="d-none", id="photoUpload") }}
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  onclick="document.getElementById('photoUpload').click()"
+                >
+                  <i class="fas fa-image"></i> Upload Photo
+                </button>
+              </div>
+
+              <!-- Video upload -->
+              <div>
+                {{ form.video(class="d-none", id="videoUpload") }}
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  onclick="document.getElementById('videoUpload').click()"
+                >
+                  <i class="fas fa-video"></i> Upload Video
+                </button>
+              </div>
+            </div>
+            <div class="form-text">
+              Add photos or videos to enhance your aviation post (optional)
+            </div>
+
+            <!-- Validation errors -->
+            {% for e in form.image.errors %}
+            <div class="text-danger small">{{ e }}</div>
+            {% endfor %} {% for e in form.video.errors %}
+            <div class="text-danger small">{{ e }}</div>
+            {% endfor %}
+          </div>
+
+          <!-- Buttons -->
+          <div class="d-flex gap-2">
+            {{ form.submit(class="btn btn-primary") }}
+            <a href="{{ url_for('home') }}" class="btn btn-secondary">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Writing Tips -->
+    <div class="card mt-4">
+      <div class="card-header">
+        <h5><i class="fas fa-lightbulb"></i> Writing Tips</h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled mb-0">
+          <li>
+            <i class="fas fa-check text-success"></i> Share aircraft experiences
+          </li>
+          <li>
+            <i class="fas fa-check text-success"></i> Ask aviation questions
+          </li>
+          <li>
+            <i class="fas fa-check text-success"></i> Discuss news or technology
+          </li>
+          <li>
+            <i class="fas fa-check text-success"></i> Add photos or videos of
+            flights
+          </li>
+          <li>
+            <i class="fas fa-check text-success"></i> Be respectful and
+            constructive
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %} 
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4 text-center">Latest Aviation Posts</h1>
+
+  {% if posts %}
+    <div class="row g-4">
+      {% for post in posts %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card shadow-sm h-100">
+
+            <!-- Show image if it exists -->
+            {% if post.image_file %}
+              <img src="{{ url_for('static', filename='uploads/' ~ post.image_file) }}" 
+                   class="card-img-top" alt="{{ post.title }}">
+            {% endif %}
+
+            <!-- Show video if it exists -->
+            {% if post.video_file %}
+              <video controls class="card-img-top mt-2">
+                <source src="{{ url_for('static', filename='uploads/' ~ post.video_file) }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            {% endif %}
+
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">
+                <a href="{{ url_for('post_detail', post_id=post.id) }}" class="text-decoration-none">
+                  {{ post.title }}
+                </a>
+              </h5>
+              <p class="card-text text-muted small mb-2">
+                By <a href="{{ url_for('profile', user_id=post.author.id) }}">{{ post.author.username }}</a> 
+                • {{ post.date.strftime('%Y-%m-%d') }}
+              </p>
+
+              {% if post.content %}
+                <p class="card-text">
+                  {{ post.content[:120] }}{% if post.content|length > 120 %}...{% endif %}
+                </p>
+              {% endif %}
+
+              <div class="mt-auto">
+                <span class="badge bg-primary">❤️ {{ post.likes_count }}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="text-center text-muted">No posts yet — be the first to add one!</p>
+  {% endif %}
+</div>
+{% endblock %}
+

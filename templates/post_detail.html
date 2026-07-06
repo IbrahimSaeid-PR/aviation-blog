@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <!-- Post Section -->
+  <article class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <h1 class="card-title">{{ post.title }}</h1>
+      <p class="text-muted">
+        By <a href="{{ url_for('profile', user_id=post.author.id) }}">{{ post.author.username }}</a>
+        • {{ post.date.strftime('%Y-%m-%d %H:%M') }}
+      </p>
+
+      <div class="mb-3">
+        {% if post.content %}
+          <p>{{ post.content }}</p>
+        {% endif %}
+
+        {% if post.image_file %}
+          <img src="{{ url_for('static', filename='uploads/' ~ post.image_file) }}"
+               alt="{{ post.title }}"
+               class="img-fluid rounded mb-3">
+        {% endif %}
+
+        {% if post.video_file %}
+          <div class="ratio ratio-16x9 mb-3">
+            <video controls class="w-100 rounded">
+              <source src="{{ url_for('static', filename='uploads/' ~ post.video_file) }}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Post actions -->
+      {% if current_user.is_authenticated and current_user.id == post.user_id %}
+      <div class="d-flex gap-2">
+        <a href="{{ url_for('edit_post', post_id=post.id) }}" class="btn btn-sm btn-outline-primary">
+          <i class="fas fa-edit"></i> Edit
+        </a>
+        <form method="POST" action="{{ url_for('delete_post', post_id=post.id) }}">
+          {{ delete_form.hidden_tag() }}
+          <button type="submit" class="btn btn-sm btn-outline-danger"
+                  onclick="return confirm('Delete this post? This cannot be undone.');">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </form>
+      </div>
+      {% endif %}
+    </div>
+  </article>
+
+  <!-- Likes Section -->
+  <section class="mb-4">
+    {% if current_user.is_authenticated %}
+    <form method="POST" action="{{ url_for('toggle_like', post_id=post.id) }}">
+      {{ like_form.hidden_tag() }}
+      <button type="submit" class="btn btn-outline-primary">
+        {% if liked %}
+          <i class="fas fa-thumbs-down"></i> Unlike
+        {% else %}
+          <i class="fas fa-thumbs-up"></i> Like
+        {% endif %}
+        ({{ post.likes_count or 0 }})
+      </button>
+    </form>
+    {% else %}
+    <p>
+      👍 Likes: {{ post.likes_count or 0 }}.
+      <a href="{{ url_for('login') }}">Log in</a> to like this post.
+    </p>
+    {% endif %}
+  </section>
+
+  <hr>
+
+  <!-- Comments Section -->
+  <section>
+    <h3>Comments ({{ comments|length }})</h3>
+
+    {% if comments %}
+      {% for c in comments %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <p class="mb-1">
+            <strong>
+              <a href="{{ url_for('profile', user_id=c.author.id) }}">{{ c.author.username }}</a>
+            </strong>
+            <span class="text-muted">• {{ c.date.strftime('%Y-%m-%d %H:%M') }}</span>
+          </p>
+          <p>{{ c.content }}</p>
+
+          {% if current_user.is_authenticated and current_user.id == c.user_id %}
+          <div class="d-flex gap-2">
+            <a href="{{ url_for('edit_comment', comment_id=c.id) }}" class="btn btn-sm btn-outline-secondary">
+              Edit
+            </a>
+            <form method="POST" action="{{ url_for('delete_comment', comment_id=c.id) }}">
+              {{ comment_delete_form.hidden_tag() }}
+              <button type="submit" class="btn btn-sm btn-outline-danger"
+                      onclick="return confirm('Delete this comment?');">
+                Delete
+              </button>
+            </form>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p>No comments yet. Be the first to ask or answer.</p>
+    {% endif %}
+
+    <!-- Add Comment Form -->
+    {% if current_user.is_authenticated %}
+    <div class="card mt-4">
+      <div class="card-body">
+        <h5 class="card-title">Leave a comment</h5>
+        <form method="POST" action="{{ url_for('add_comment', post_id=post.id) }}">
+          {{ form.hidden_tag() }}
+          <div class="mb-3">
+            {{ form.content(class="form-control", rows="3", placeholder="Write your comment here...") }}
+            {% for error in form.content.errors %}
+              <div class="text-danger small">{{ error }}</div>
+            {% endfor %}
+          </div>
+          <button type="submit" class="btn btn-primary">{{ form.submit.label.text }}</button>
+        </form>
+      </div>
+    </div>
+    {% else %}
+      <p><a href="{{ url_for('login') }}">Log in</a> to post a comment.</p>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <style>
+    .profile-header {
+      background: #fdfeff; 
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .profile-header h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #2c3e50; 
+    }
+
+    .profile-header p {
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .posts-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .post-item {
+      background: #fffaf0;
+      border: 1px solid #fae1dd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+    }
+
+    .post-item h3 {
+      margin-top: 0;
+      color: #1a202c;
+    }
+
+    .post-item .meta {
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    /* 👇 THIS IS THE NEW SECTION FOR MANUAL EDITING 👇 */
+    .post-item p {
+      color: #000000; /* Edit this hex code to change text color */
+    }
+  </style>
+
+  <div class="profile-header">
+    <h1>Profile: {{ user.username }}</h1>
+    <p>Email: {{ user.email }}</p>
+  </div>
+
+  <h2 class="mb-4">Notifications for {{ user.username }}</h2>
+
+  {% if notifications %}
+    <ul class="posts-list">
+      {% for notification in notifications %}
+        <li class="post-item">
+          <h3>
+             {{ notification.title }}
+          </h3>
+          <p class="meta">Received on {{ notification.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+
+          {% if notification.content %}
+            <p>{{ notification.content }}</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No notifications yet for this user.</p>
+  {% endif %}
+{% endblock %}

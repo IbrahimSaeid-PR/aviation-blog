@@ -1,0 +1,220 @@
+{% extends "base.html" %} {% block title %} Welcome to SkyHub {% endblock %} {%
+block content %}
+<div class="container mt-5">
+  <div class="text-center mb-5">
+    <h1 class="display-4">✈️ Welcome to SkyHub</h1>
+    <p class="lead">
+      Your aviation community for pilots, student pilots, and enthusiasts.
+    </p>
+  </div>
+
+  <!-- Section 1 -->
+  <div class="row mb-5 text-center">
+    <div class="col-md-6 mb-4">
+      <img
+        src="{{ url_for('static', filename='images/pexels-ahmedmuntasir-912050.jpg') }}"
+        class="img-fluid rounded shadow"
+        alt="Pilot Training"
+      />
+      <p class="mt-3">
+        Airplane Engine Close-Up
+        <br />
+        Description: A detailed view of a jet engine from the tarmac’s edge.
+        <br />
+        Fun Fact: The SR-71 Blackbird, one of the fastest aircraft ever built,
+        could reach speeds over Mach 3—more than three times the speed of sound!
+      </p>
+    </div>
+    <div class="col-md-6 mb-4">
+      <img
+        src="{{ url_for('static', filename='images/premium_photo-1661964062531-dcbd3b63d1bd.jpg') }}"
+        class="img-fluid rounded shadow"
+        alt="Cockpit"
+      />
+      <p class="mt-3">
+        Cockpit Control Panels
+        <br />
+        Description: The complex interface of a cockpit, showcasing
+        instrumentation and control.
+        <br />
+        Fun Fact: The modern pilot relies heavily on standard phraseology: all
+        commercial pilots flying internationally must communicate in English
+        using a precise, structured format to avoid miscommunication
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="row mb-5 text-center">
+    <div class="col-md-6 mb-4">
+      <img
+        src="{{ url_for('static', filename='images/pexels-pixabay-45230.jpg') }}"
+        class="img-fluid rounded shadow"
+        alt="Aircraft Systems"
+      />
+      <p class="mt-3">
+        Small Aircraft at Sunset
+        <br />
+        Description: A small aircraft parked on the runway bathed in warm golden
+        light.
+        <br />
+        Fun Fact: Aviation photography began during World War I, used originally
+        to gather aerial intelligence. Today, it’s an artform requiring gear
+        like telephoto lenses and fast shutters to capture aircraft in motion.
+      </p>
+    </div>
+    <div class="col-md-6 mb-4">
+      <img
+        src="{{ url_for('static', filename='images/b0b5ee37942a63e797827730c66cf75c.jpg') }}"
+        class="img-fluid rounded shadow"
+        alt="Safety Briefing"
+      />
+      <p class="mt-3">
+        Jet Taking Off at Sunset
+        <br />
+        Description: A majestic passenger jet making its run on the runway at
+        dusk.
+        <br />
+        Fun Fact: Your flight ticket might not be black—but the flight data
+        recorder (“black box”) is painted bright orange to ensure it's easily
+        found after an incident.
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="row mb-5 text-center">
+    <div class="col-md-6 mb-4">
+      <img
+        src="{{ url_for('static', filename='images/cockpit-sunset-view-stockcake.jpg') }}"
+        class="img-fluid rounded shadow"
+        alt="Aviation Community"
+      />
+      <p class="mt-3">
+        Cockpit at Sunset
+        <br />
+        A glowing cockpit deck framed by vivid sunset hues and instrument panel
+        lights.
+        <br />
+        Quick Fact: The transition from analog dials to digital screens in
+        cockpits started in the 1970s, leading to the development of the "glass
+        cockpit," first introduced in Airbus A310 and Boeing 757 and 767 models
+      </p>
+    </div>
+    <div class="col-md-6 mb-4">
+      <img
+        src="{{ url_for('static', filename='images/history-flight.jpg') }}"
+        class="img-fluid rounded shadow"
+        alt="Sky"
+      />
+      <p class="mt-3">
+        Vintage Biplane (Historic Aircraft)
+        <br />
+        A beautifully aged biplane parked on the runway, evoking early aviation.
+        <br />
+        Quick Fact: The Wright Flyer, flown by the Wright Brothers in 1903, was
+        the first sustained powered heavier-than-air aircraft—marking the birth
+        of modern aviation
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="row mb-5 text-center">
+    <div class="col-md-6 mb-4">
+      <img
+        src="{{ url_for('static', filename='images/pilot-navigating-night-stockcake.jpg') }}"
+        class="img-fluid rounded shadow"
+        alt="Aviation Community"
+      />
+      <p class="mt-3">
+        Vintage Airplane Cockpit (Close-Up)
+        <br />
+        A detailed view of a classic aircraft cockpit, showcasing analog gauges,
+        weathered controls, and the tactile complexity pilots navigated.
+        <br />
+        Quick Fact: The transition from analog “steam gauge” cockpits to
+        streamlined glass cockpit displays began in the 1970s, significantly
+        improving situational awareness and safety.
+      </p>
+    </div>
+    <div class="col-md-6 mb-4">
+      <img
+        src="{{ url_for('static', filename='images/vintage-airplane-cockpit-stockcake.jpg') }}"
+        class="img-fluid rounded shadow"
+        alt="Sky"
+      />
+      <p class="mt-3">
+        Worn Leather & Classic Panels
+        <br />
+        This cockpit view highlights aged leather seats and neatly arranged
+        panel gauges—a snapshot of aviation history both functional and
+        nostalgic.
+        <br />
+        Quick Fact: The Hughes H-1 Racer, built by Howard Hughes in 1935, set
+        both world speed and transcontinental records—marking the height of
+        interwar aviation innovation
+      </p>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="row mb-5 text-center">
+    <div class="col-md-6 mb-4">
+      <img
+        src="{{ url_for('static', filename='images/dramatic-sky-flight-stockcake.jpg') }}"
+        class="img-fluid rounded shadow"
+        alt="Aviation Community"
+      />
+      <p class="mt-3">
+        Museum Cockpit Display
+        <br />
+        A wide-angle look into a preserved cockpit exhibit—potentially from a
+        historic aircraft like the Boeing B-17—offered in a museum setting.
+        <br />
+        Quick Fact: “The Swoose”, a Boeing B-17D Flying Fortress, is the oldest
+        intact B-17 and survived combat operations in WWII. It’s currently
+        undergoing restoration at the National Museum of the U.S. Air Force.
+      </p>
+    </div>
+    <div class="col-md-6 mb-4">
+      <img
+        src="{{ url_for('static', filename='images/cockpit_cover.jpg') }}"
+        class="img-fluid rounded shadow"
+        alt="Sky"
+      />
+      <p class="mt-3">
+        Pilot’s View at Sunrise
+        <br />
+        A breathtaking cockpit perspective looking out at sunrise from high
+        altitude.
+        <br />
+        Aviation Insight: The cockpit evolves both in design and
+        function—transitioning smoothly from analog to advanced digital systems
+        over decades.
+      </p>
+    </div>
+  </div>
+
+  <!-- About Us -->
+  <div class="row mb-5">
+    <div class="col text-center">
+      <br /><br /><br />
+      <h2 class="mb-4">About SkyHub</h2>
+      <p class="lead">
+        SkyHub is a community created by and for aviation enthusiasts—
+        connecting pilots, student pilots, and aviation lovers worldwide.
+      </p>
+      <p>
+        Our mission is to make aviation knowledge accessible in one place.
+        Whether you’re preparing for exams, learning about aircraft systems, or
+        sharing flying experiences, SkyHub is here to help you grow.
+      </p>
+      <p>
+        ✈️ Learn. Share. Inspire. Together, we take aviation knowledge to new
+        heights!
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
